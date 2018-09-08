@@ -1,6 +1,6 @@
 # lacstarterkit
 
-A boilerplate for static sites. No configuration required.
+A front-end boilerplate for static sites. No configuration required.
 
 ## Features:
 - Gulp
