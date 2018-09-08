@@ -1,0 +1,9 @@
+.h1 {
+	color: red;
+	font-weight: normal;
+	transition: transform 0.3s;
+
+	& {
+		text-decoration: underline;
+	}
+}  
