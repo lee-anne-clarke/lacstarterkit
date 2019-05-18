@@ -3,7 +3,7 @@
 A front-end boilerplate for static sites. No configuration required.
 
 ## Features:
-- Gulp
+- Gulp 4
 - Babel 7
 - Sass
 - Autoprefixer
@@ -23,7 +23,7 @@ cd [the project folder]
 npm install
 ```
 
-## To run the local server and compile the files:
+## To run the local server:
 ```bash
 gulp
 ```

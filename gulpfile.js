@@ -1,10 +1,10 @@
-var gulp = require('gulp');
-var babel = require('gulp-babel');
-var concat = require('gulp-concat');
-var uglify = require('gulp-uglify');
-var sass = require('gulp-sass');
-var autoprefixer = require('gulp-autoprefixer');
-var browserSync = require('browser-sync').create();
+var gulp = require('gulp'),
+	babel = require('gulp-babel'),
+	concat = require('gulp-concat'),
+	uglify = require('gulp-uglify'),
+	sass = require('gulp-sass'),
+	autoprefixer = require('gulp-autoprefixer'),
+	browserSync = require('browser-sync').create();
 
 var paths = {
 	styles: {
@@ -36,14 +36,16 @@ gulp.task('compile-js', function() {
 	  .pipe(browserSync.stream());
 });
 
-gulp.task('serve', ['compile-sass', 'compile-js'], function() { 
+gulp.task('serve', gulp.series('compile-sass', 'compile-js', function(done) { 
 	browserSync.init({
 		server: './dist'
 	});
 
-	gulp.watch(paths.styles.srcWatch, ['compile-sass']);
-	gulp.watch(paths.scripts.src, ['compile-js']);
+	gulp.watch(paths.styles.srcWatch, gulp.series('compile-sass'));
+	gulp.watch(paths.scripts.src, gulp.series('compile-js'));
 	gulp.watch('dist/**/*.html').on('change', browserSync.reload);
-});
 
-gulp.task('default', ['serve']);
+	done();
+}));
+
+gulp.task('default', gulp.series('serve'));
